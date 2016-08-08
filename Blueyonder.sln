@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blueyonder.Web.Client", "Bl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blueyonder.Test", "Blueyonder.Test\Blueyonder.Test.csproj", "{2D3DE791-5109-4F5B-9BF6-3EA008151B1D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Test", "3. Test", "{A16D1416-72D2-475F-ACCE-6DD7EA6EB3D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Model", "2. Model", "{F76D4CEF-7C26-4D83-9EC3-72071A5D1B83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Client", "1. Client", "{20E42B3D-5B2E-4629-B31B-FACF21E4FE46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +36,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D8EA32F-ABE8-43C8-A2D8-610826EE0453} = {F76D4CEF-7C26-4D83-9EC3-72071A5D1B83}
+		{72C3EF0A-6E9C-4FCE-A32A-7173D9A7837F} = {20E42B3D-5B2E-4629-B31B-FACF21E4FE46}
+		{2D3DE791-5109-4F5B-9BF6-3EA008151B1D} = {A16D1416-72D2-475F-ACCE-6DD7EA6EB3D5}
 	EndGlobalSection
 EndGlobal

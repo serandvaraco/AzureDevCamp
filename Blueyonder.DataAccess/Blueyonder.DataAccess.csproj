@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -51,51 +52,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\BlueYonderModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BlueYonderModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\BlueYonderModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BlueYonderModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\BlueYonderModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BlueYonderModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Flight.cs">
-      <DependentUpon>BlueYonderModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Entities\Enums\FlightStatus.cs" />
+    <Compile Include="Entities\Enums\FrequentFlyerMemberClass.cs" />
+    <Compile Include="Entities\Enums\MediaType.cs" />
+    <Compile Include="Entities\Enums\SeatClass.cs" />
+    <Compile Include="Entities\Enums\TipCategory.cs" />
+    <Compile Include="Entities\Flight.cs" />
+    <Compile Include="Entities\FlightSchedule.cs" />
+    <Compile Include="Entities\FrequentFlyer.cs" />
+    <Compile Include="Entities\Location.cs" />
+    <Compile Include="Entities\Reservation.cs" />
+    <Compile Include="Entities\Traveler.cs" />
+    <Compile Include="Entities\Trip.cs" />
+    <Compile Include="FrequentFlyersContext.cs" />
+    <Compile Include="Interfaces\Base\IRepository.cs" />
+    <Compile Include="Interfaces\Base\ISingleKeyEntityRepository.cs" />
+    <Compile Include="Interfaces\IFlightRepository.cs" />
+    <Compile Include="Interfaces\IFrequentFlyerRepository.cs" />
+    <Compile Include="Interfaces\ILocationRepository.cs" />
+    <Compile Include="Interfaces\IReservationRepository.cs" />
+    <Compile Include="Interfaces\ITravelerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\FlightRepository.cs" />
+    <Compile Include="Repository\FrequentFlyerRepository.cs" />
+    <Compile Include="Repository\LocationRepository.cs" />
+    <Compile Include="Repository\ReservationRepository.cs" />
+    <Compile Include="Repository\TravelerRepository.cs" />
+    <Compile Include="TravelCompanionContext.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EntityDeploy Include="Entities\BlueYonderModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BlueYonderModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Entities\BlueYonderModel.edmx.diagram">
-      <DependentUpon>BlueYonderModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Entities\BlueYonderModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BlueYonderModel.edmx</DependentUpon>
-      <LastGenOutput>BlueYonderModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Entities\BlueYonderModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BlueYonderModel.edmx</DependentUpon>
-      <LastGenOutput>BlueYonderModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
