@@ -1,10 +1,15 @@
-﻿using Blueyonder.DataAccess.Interfaces;
+﻿using Blueyonder.DataAccess;
+using Blueyonder.DataAccess.Interfaces;
 using Blueyonder.Entities;
 using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Blueyonder.DataAccess.Repositories
+namespace BlueYonder.DataAccess.Repositories
 {
     public class ReservationRepository : IReservationRepository
     {
@@ -27,19 +32,25 @@ namespace Blueyonder.DataAccess.Repositories
 
         public Reservation GetSingle(int entityKey)
         {
-            
-            var query = from r in context.Reservations 
-                        where r.ReservationId == entityKey 
+            var query = from r in context.Reservations
+                        where r.ReservationId == entityKey
                         select r;
 
             return query.SingleOrDefault();
         }
 
-        
+        public Reservation GetSingleNoTracking(int reservationID)
+        {
+            var query = from r in context.Reservations.AsNoTracking()
+                        where r.ReservationId == reservationID
+                        select r ;
+
+            return query.SingleOrDefault();
+        }
+
         public IQueryable<Reservation> GetAll()
         {
             return context.Reservations.AsQueryable<Reservation>();
-        
         }
 
         public IQueryable<Reservation> FindBy(Expression<Func<Reservation, bool>> predicate)
@@ -47,21 +58,18 @@ namespace Blueyonder.DataAccess.Repositories
             return GetAll().Where(predicate);
         }
 
-        
-
         public void Add(Reservation entity)
         {
             context.Reservations.Add(entity);
         }
 
-        
         public void Delete(Reservation entity)
         {
             context.Reservations.Find(entity.ReservationId);
             if (entity.DepartFlightScheduleID != 0)
-                context.Entry(entity.DepartureFlight).State = System.Data.Entity.EntityState.Deleted;
+                context.Entry(entity.DepartureFlight).State = EntityState.Deleted;
             if (entity.ReturnFlightScheduleID != 0)
-                context.Entry(entity.ReturnFlight).State = System.Data.Entity.EntityState.Deleted;
+                context.Entry(entity.ReturnFlight).State = EntityState.Deleted;            
             context.Reservations.Remove(entity);
         }
 
@@ -69,23 +77,26 @@ namespace Blueyonder.DataAccess.Repositories
         {
             var originalEntity = context.Reservations.Find(entity.ReservationId);
             context.Entry(originalEntity).CurrentValues.SetValues(entity);
+        }
 
+        public void UpdateTrip(Trip originalEntity, Trip updatedEntity)
+        {
+            context.Entry(originalEntity).CurrentValues.SetValues(updatedEntity);
         }
 
         public void Save()
         {
             context.SaveChanges();
         }
-        
+
         public void Dispose()
         {
-         
             if (context != null)
             {
                 context.Dispose();
                 context = null;
             }
-        }
-       
+            GC.SuppressFinalize(this);
+        } 
     }
 }

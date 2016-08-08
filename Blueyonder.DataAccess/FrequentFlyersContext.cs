@@ -9,7 +9,7 @@ namespace Blueyonder.DataAccess
         {
         }
 
-        public FrequentFlyersContext() : base("BlueYonderFrequentFlyer")
+        public FrequentFlyersContext() : base("BlueyonderFrequentFlyer")
         {
         }
 

@@ -8,8 +8,9 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using BlueYonder.DataAccess.Repositories;
 
-namespace BlueYonder.IntegrationTests
+namespace Blueyonder.IntegrationTests
 {
     [TestClass]
     public class ReservationQueries

@@ -8,7 +8,7 @@ using Blueyonder.DataAccess;
 using Blueyonder.Entities;
 using Blueyonder.Entities.Enums;
 
-namespace BlueYonder.IntegrationTests
+namespace Blueyonder.IntegrationTests
 {
     
     class TravelCompanionDatabaseInitializer : DropCreateDatabaseIfModelChanges<TravelCompanionContext>

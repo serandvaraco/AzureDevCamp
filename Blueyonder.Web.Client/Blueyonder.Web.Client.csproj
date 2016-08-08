@@ -57,6 +57,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -116,6 +117,16 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\FlightsController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
+    <Compile Include="Controllers\ReservationsController.cs" />
+    <Compile Include="Controllers\TravelersController.cs" />
+    <Compile Include="Controllers\TripsController.cs" />
+    <Compile Include="DataTransferObjects\FlightDirection.cs" />
+    <Compile Include="DataTransferObjects\FlightWithSchedulesDto.cs" />
+    <Compile Include="DataTransferObjects\ScheduleDto.cs" />
+    <Compile Include="DataTransferObjects\WeatherCondition.cs" />
+    <Compile Include="DataTransferObjects\WeatherForecast.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -133,13 +144,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blueyonder.DataAccess\Blueyonder.DataAccess.csproj">
       <Project>{8d8ea32f-abe8-43c8-a2d8-610826ee0453}</Project>
       <Name>Blueyonder.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Blueyonder.Host\Blueyonder.Host.csproj">
+      <Project>{422809b5-07a0-49a3-93f2-e80176f76459}</Project>
+      <Name>Blueyonder.Host</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

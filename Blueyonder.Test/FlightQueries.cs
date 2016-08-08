@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects;
 
-namespace BlueYonder.IntegrationTests
+namespace Blueyonder.IntegrationTests
 {
     [TestClass]
     public class FlightQueries

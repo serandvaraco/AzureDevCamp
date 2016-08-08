@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
 
-namespace BlueYonder.IntegrationTests
+namespace Blueyonder.IntegrationTests
 {
 
     // The database initializer create test data and clear any existing remains from previous runs, before running the tests
