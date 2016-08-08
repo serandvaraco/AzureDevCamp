@@ -72,6 +72,15 @@
     <Compile Include="Interfaces\ILocationRepository.cs" />
     <Compile Include="Interfaces\IReservationRepository.cs" />
     <Compile Include="Interfaces\ITravelerRepository.cs" />
+    <Compile Include="Migrations\201608081954154_InitialCreate.cs" />
+    <Compile Include="Migrations\201608081954154_InitialCreate.Designer.cs">
+      <DependentUpon>201608081954154_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608082056147_AdColumnsTripReservation.cs" />
+    <Compile Include="Migrations\201608082056147_AdColumnsTripReservation.Designer.cs">
+      <DependentUpon>201608082056147_AdColumnsTripReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\FlightRepository.cs" />
     <Compile Include="Repository\FrequentFlyerRepository.cs" />
@@ -80,7 +89,14 @@
     <Compile Include="Repository\TravelerRepository.cs" />
     <Compile Include="TravelCompanionContext.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201608081954154_InitialCreate.resx">
+      <DependentUpon>201608081954154_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608082056147_AdColumnsTripReservation.resx">
+      <DependentUpon>201608082056147_AdColumnsTripReservation.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
