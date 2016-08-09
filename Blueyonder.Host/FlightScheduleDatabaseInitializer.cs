@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace Blueyonder.Companion.Host
 {
-    class FlightScheduleDatabaseInitializer : DropCreateDatabaseIfModelChanges<TravelCompanionContext>
+    public class FlightScheduleDatabaseInitializer : DropCreateDatabaseIfModelChanges<TravelCompanionContext>
     {
         protected override void Seed(TravelCompanionContext context)
         {

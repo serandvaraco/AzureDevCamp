@@ -18,10 +18,11 @@ namespace Blueyonder.Companion.Controllers
         private IFlightRepository Flights;
         private ILocationRepository Locations;
 
-        public FlightsController()
+        //change the FlightsController Constructor
+        public FlightsController(IFlightRepository flights, ILocationRepository locations)
         {
-            Flights = new FlightRepository();
-            Locations = new LocationRepository();
+            Flights = flights;
+            Locations = locations;
         }
 
         public HttpResponseMessage Get(int id)
@@ -29,12 +30,12 @@ namespace Blueyonder.Companion.Controllers
             var flight = Flights.GetFlight(id);
 
             var flightDTO = new FlightWithSchedulesDTO
-                {
-                    FlightNumber = flight.FlightNumber,
-                    FlightId = flight.FlightId,
-                    Source = flight.Source.ToLocationDTO(),
-                    Destination = flight.Destination.ToLocationDTO(),
-                    Schedules =
+            {
+                FlightNumber = flight.FlightNumber,
+                FlightId = flight.FlightId,
+                Source = flight.Source.ToLocationDTO(),
+                Destination = flight.Destination.ToLocationDTO(),
+                Schedules =
                         from s in flight.Schedules
                         select new FlightScheduleDTO
                         {
@@ -46,7 +47,7 @@ namespace Blueyonder.Companion.Controllers
                             Duration = s.Duration,
                             Arrival = GetArrivalDate(s.Departure, s.Duration, flight.Source, flight.Destination),
                         }
-                };
+            };
 
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, flightDTO);
             return response;
@@ -97,15 +98,15 @@ namespace Blueyonder.Companion.Controllers
             // the original Flight because the EF object 
             // was created using transparent proxies
             // and therefore cannot be serialized
-            var routesWithSchedules = 
+            var routesWithSchedules =
                 from r in groupedSchedules.ToList()
                 select new FlightWithSchedulesDTO
                 {
                     FlightNumber = r.Key.FlightNumber,
                     FlightId = r.Key.FlightId,
                     Source = fromLocation.ToLocationDTO(),
-                    Destination = toLocation.ToLocationDTO(),                    
-                    Schedules = 
+                    Destination = toLocation.ToLocationDTO(),
+                    Schedules =
                         from s in r
                         select new FlightScheduleDTO
                         {
@@ -115,11 +116,11 @@ namespace Blueyonder.Companion.Controllers
                             FlightScheduleId = s.FlightScheduleId,
                             Departure = s.Departure,
                             Duration = s.Duration,
-                            Arrival = GetArrivalDate(s.Departure, s.Duration, fromLocation , toLocation),
+                            Arrival = GetArrivalDate(s.Departure, s.Duration, fromLocation, toLocation),
                             ActualDeparture = s.ActualDeparture
                         }
                 };
-            
+
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, routesWithSchedules.ToList());
             return response;
         }

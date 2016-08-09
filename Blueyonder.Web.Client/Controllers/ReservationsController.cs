@@ -18,15 +18,13 @@ namespace Blueyonder.Companion.Controllers
     public class ReservationsController : ApiController
     {
         public IReservationRepository Reservations { get; set; }
-        public ITravelerRepository Travelers { get; set; }
 
-        public ReservationsController()
+        public ReservationsController(IReservationRepository reservations)
         {
-            Reservations = new ReservationRepository();
-            Travelers = new TravelerRepository();
+            Reservations = reservations;
         }
 
-        public HttpResponseMessage Get(int id)
+        public HttpResponseMessage GetReservation(int id)
         {
             var reservation = Reservations.GetSingle(id);
 
@@ -38,13 +36,9 @@ namespace Blueyonder.Companion.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
         }
 
-        public HttpResponseMessage Get(string travelerId)
+        public HttpResponseMessage GetReservations(int travelerId)
         {
-            var traveler = Travelers.FindBy(t => t.TravelerUserIdentity == travelerId).FirstOrDefault();
-            if(traveler == null)
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-
-            var reservations = Reservations.FindBy(r => r.TravelerId == traveler.TravelerId);
+            var reservations = Reservations.FindBy(r => r.TravelerId == travelerId);
 
             var reservationsDto =
                 from r in reservations.ToList() select r.ToReservationDTO();
@@ -85,6 +79,7 @@ namespace Blueyonder.Companion.Controllers
             Reservations.Save();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
+
 
     }
 }

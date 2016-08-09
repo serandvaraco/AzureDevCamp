@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. BI", "2. BI", "{B9D0E38B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blueyonder.Host", "Blueyonder.Host\Blueyonder.Host.csproj", "{422809B5-07A0-49A3-93F2-E80176F76459}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blueyonder.Desktop.Client", "Blueyonder.Desktop.Client\Blueyonder.Desktop.Client.csproj", "{FD4D98B0-D24D-484F-8122-744696AFFE60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{422809B5-07A0-49A3-93F2-E80176F76459}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{422809B5-07A0-49A3-93F2-E80176F76459}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{422809B5-07A0-49A3-93F2-E80176F76459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD4D98B0-D24D-484F-8122-744696AFFE60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD4D98B0-D24D-484F-8122-744696AFFE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD4D98B0-D24D-484F-8122-744696AFFE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD4D98B0-D24D-484F-8122-744696AFFE60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +56,6 @@ Global
 		{72C3EF0A-6E9C-4FCE-A32A-7173D9A7837F} = {20E42B3D-5B2E-4629-B31B-FACF21E4FE46}
 		{2D3DE791-5109-4F5B-9BF6-3EA008151B1D} = {A16D1416-72D2-475F-ACCE-6DD7EA6EB3D5}
 		{422809B5-07A0-49A3-93F2-E80176F76459} = {B9D0E38B-70B9-44F4-8840-5C68B313C4C9}
+		{FD4D98B0-D24D-484F-8122-744696AFFE60} = {20E42B3D-5B2E-4629-B31B-FACF21E4FE46}
 	EndGlobalSection
 EndGlobal

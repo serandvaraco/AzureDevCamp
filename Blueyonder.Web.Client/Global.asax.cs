@@ -7,6 +7,8 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using Blueyonder.DataAccess;
+using Blueyonder.Companion.Host;
 
 namespace Blueyonder.Web.Client
 {
@@ -14,7 +16,7 @@ namespace Blueyonder.Web.Client
     {
         void Application_Start(object sender, EventArgs e)
         {
-            // Code that runs on application startup
+            (new FlightScheduleDatabaseInitializer()).InitializeDatabase(new TravelCompanionContext());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);            

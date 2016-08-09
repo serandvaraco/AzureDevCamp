@@ -115,8 +115,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\ModelValidationAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AtomHandler.cs" />
+    <Compile Include="Controllers\BlueYonderResolver.cs" />
     <Compile Include="Controllers\FlightsController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
@@ -127,6 +130,7 @@
     <Compile Include="DataTransferObjects\ScheduleDto.cs" />
     <Compile Include="DataTransferObjects\WeatherCondition.cs" />
     <Compile Include="DataTransferObjects\WeatherForecast.cs" />
+    <Compile Include="Formatters\AtomFormatter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

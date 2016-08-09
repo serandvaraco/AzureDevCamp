@@ -25,9 +25,9 @@ namespace Blueyonder.Companion.Controllers
 
         public IReservationRepository Reservations { get; set; }
 
-        public TripsController()
+        public TripsController(IReservationRepository reservations)
         {
-            Reservations = new ReservationRepository();
+            Reservations = reservations;
         }
 
         public HttpResponseMessage Get(int id)
@@ -41,7 +41,7 @@ namespace Blueyonder.Companion.Controllers
             {
                 trip.ThumbnailImage = ResolveImageUrl(trip.FlightInfo.Flight.Destination.ThumbnailImageFile);
             }
-            
+
             if (trip == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
@@ -49,12 +49,12 @@ namespace Blueyonder.Companion.Controllers
             else
             {
                 return Request.CreateResponse(HttpStatusCode.OK, trip.ToTripDTO());
-            }            
+            }
         }
 
         private string ResolveImageUrl(string relativeImagePath)
         {
-            return string.Format(IMAGE_URL_TEMPLATE, Request.RequestUri.Authority, relativeImagePath);               
+            return string.Format(IMAGE_URL_TEMPLATE, Request.RequestUri.Authority, relativeImagePath);
         }
 
         public HttpResponseMessage Put(int id, [FromBody]TripDTO trip)
@@ -69,7 +69,7 @@ namespace Blueyonder.Companion.Controllers
             }
 
             Trip orignalEntity;
-            
+
             if (reservation.DepartFlightScheduleID == id)
             {
                 orignalEntity = reservation.DepartureFlight;
@@ -79,13 +79,12 @@ namespace Blueyonder.Companion.Controllers
             {
                 orignalEntity = reservation.ReturnFlight;
 
-            }                       
+            }
 
             Reservations.UpdateTrip(orignalEntity, trip.FromTripDTO());
             Reservations.Save();
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-
     }
 }

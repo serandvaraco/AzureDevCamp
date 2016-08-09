@@ -9,32 +9,22 @@ using Blueyonder.Companion.Entities.Mappers;
 using Blueyonder.Companion.Entities;
 using Blueyonder.DataAccess.Repositories;
 
+
 namespace Blueyonder.Companion.Controllers
 {
     public class LocationsController : ApiController
     {
         public ILocationRepository Locations { get; set; }
 
-        public LocationsController()
+        public LocationsController(ILocationRepository locations)
         {
-            Locations = new LocationRepository();
+            Locations = locations;
         }
 
-        public IEnumerable<Location> Get(string country = null,
-                                 string state = null,
-                                 string city = null)
+        public IQueryable<Location> Get()
         {
-            var locations = Locations.GetAll();
-
-            var result = from l in locations
-                         where (country == null || l.Country.ToLower().Contains(country.ToLower())) &&
-                               (state == null || l.State.ToLower().Contains(state.ToLower())) &&
-                               (city == null || l.City.ToLower().Contains(city.ToLower()))
-                         select l;
-
-            return result.ToList();
+            return Locations.GetAll();
         }
-
 
         public LocationDTO Get(int id)
         {
@@ -42,6 +32,5 @@ namespace Blueyonder.Companion.Controllers
 
             return location.ToLocationDTO();
         }
-
     }
 }

@@ -7,6 +7,7 @@ using System.Web.Http;
 using Blueyonder.Entities;
 using Blueyonder.DataAccess.Interfaces;
 using Blueyonder.DataAccess.Repositories;
+using Blueyonder.Companion.Controllers.ActionFilters;
 
 namespace Blueyonder.Companion.Controllers
 {
@@ -14,10 +15,19 @@ namespace Blueyonder.Companion.Controllers
     {
         private ITravelerRepository Travelers { get; set; }
 
-        public TravelersController()
+        public TravelersController(ITravelerRepository travelers)
         {
-            Travelers = new TravelerRepository();
+            Travelers = travelers;
         }
+
+        public IEnumerable<Traveler> Get()
+        {
+            var travelers = Travelers.GetAll();
+
+            return travelers.ToList();
+        }
+
+
 
         public HttpResponseMessage Get(string id)
         {
@@ -30,23 +40,27 @@ namespace Blueyonder.Companion.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
         }
 
+        [ModelValidation]
         public HttpResponseMessage Post(Traveler traveler)
         {
             // saving the new order to the database
             Travelers.Add(traveler);
             Travelers.Save();
 
-            // creating the response, the newly saved entity and 201 Created status code
+            // creating the response, with three key features:
+            // 1. the newly saved entity
+            // 2. 201 Created status code
+            // 3. Location header with the location of the new resource
             var response = Request.CreateResponse(HttpStatusCode.Created, traveler);
-
             response.Headers.Location = new Uri(Request.RequestUri, traveler.TravelerId.ToString());
             return response;
         }
 
-        public HttpResponseMessage Put(string id, Traveler traveler)
+        [ModelValidation]
+        public HttpResponseMessage Put(int id, Traveler traveler)
         {
             // returning 404 if the entity doesn't exist 
-            if (Travelers.FindBy(t => t.TravelerUserIdentity == id).FirstOrDefault() == null)
+            if (Travelers.GetSingle(id) == null)
                 return Request.CreateResponse(HttpStatusCode.NotFound);
 
             Travelers.Edit(traveler);
@@ -54,9 +68,9 @@ namespace Blueyonder.Companion.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        public HttpResponseMessage Delete(string id)
+        public HttpResponseMessage Delete(int id)
         {
-            var traveler = Travelers.FindBy(t => t.TravelerUserIdentity == id).FirstOrDefault();
+            var traveler = Travelers.GetSingle(id);
 
             // returning 404 if the entity doesn't exist 
             if (traveler == null)
